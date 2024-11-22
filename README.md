@@ -84,13 +84,13 @@ Get the 3D vertices and corresponding colours from a single image.  Save the res
 
 ### Prerequisite
 
-* Python 2.7 (numpy, skimage, scipy)
+* Python 3.10.x (numpy, skimage, scipy)
 
-* TensorFlow >= 1.4
+* TensorFlow = 2.18.x
 
   Optional:
 
-* dlib (for detecting face.  You do not have to install if you can provide bounding box information. )
+* MTCNN (for detecting face.  You do not have to install if you can provide bounding box information. )
 
 * opencv2 (for showing results)
 
