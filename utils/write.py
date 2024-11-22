@@ -32,14 +32,11 @@ def write_obj_with_colors(obj_name, vertices, triangles, colors):
         
         # write vertices & colors
         for i in range(vertices.shape[0]):
-            # s = 'v {} {} {} \n'.format(vertices[0,i], vertices[1,i], vertices[2,i])
             s = 'v {} {} {} {} {} {}\n'.format(vertices[i, 0], vertices[i, 1], vertices[i, 2], colors[i, 0], colors[i, 1], colors[i, 2])
             f.write(s)
 
         # write f: ver ind/ uv ind
-        [k, ntri] = triangles.shape
         for i in range(triangles.shape[0]):
-            # s = 'f {} {} {}\n'.format(triangles[i, 0], triangles[i, 1], triangles[i, 2])
             s = 'f {} {} {}\n'.format(triangles[i, 2], triangles[i, 1], triangles[i, 0])
             f.write(s)
 
@@ -82,7 +79,6 @@ def write_obj_with_texture(obj_name, vertices, triangles, texture, uv_coords):
 
         # write f: ver ind/ uv ind
         for i in range(triangles.shape[0]):
-            # s = 'f {}/{} {}/{} {}/{}\n'.format(triangles[i,0], triangles[i,0], triangles[i,1], triangles[i,1], triangles[i,2], triangles[i,2])
             s = 'f {}/{} {}/{} {}/{}\n'.format(triangles[i,2], triangles[i,2], triangles[i,1], triangles[i,1], triangles[i,0], triangles[i,0])
             f.write(s)
 
@@ -135,7 +131,6 @@ def write_obj_with_colors_texture(obj_name, vertices, colors, triangles, texture
 
         # write f: ver ind/ uv ind
         for i in range(triangles.shape[0]):
-            # s = 'f {}/{} {}/{} {}/{}\n'.format(triangles[i,0], triangles[i,0], triangles[i,1], triangles[i,1], triangles[i,2], triangles[i,2])
             s = 'f {}/{} {}/{} {}/{}\n'.format(triangles[i,2], triangles[i,2], triangles[i,1], triangles[i,1], triangles[i,0], triangles[i,0])
             f.write(s)
 

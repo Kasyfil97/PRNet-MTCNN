@@ -2,13 +2,13 @@ import numpy as np
 from math import cos, sin, atan2, asin
 
 
-def isRotationMatrix(R):
+def is_rotation_matrix(R):
     ''' checks if a matrix is a valid rotation matrix(whether orthogonal or not)
     '''
-    Rt = np.transpose(R)
-    shouldBeIdentity = np.dot(Rt, R)
+    rt = np.transpose(R)
+    should_be_identity = np.dot(rt, R)
     I = np.identity(3, dtype = R.dtype)
-    n = np.linalg.norm(I - shouldBeIdentity)
+    n = np.linalg.norm(I - should_be_identity)
     return n < 1e-6
 
 
@@ -21,7 +21,6 @@ def matrix2angle(R):
         y: pitch
         z: roll
     '''
-    # assert(isRotationMatrix(R))
 
     if R[2,0] !=1 or R[2,0] != -1:
         x = asin(R[2,0])

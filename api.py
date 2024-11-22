@@ -3,6 +3,7 @@ import os
 from skimage.io import imread, imsave
 from skimage.transform import estimate_transform, warp
 from time import time
+from mtcnn.mtcnn import MTCNN
 
 from predictor import PosPrediction
 
@@ -12,23 +13,19 @@ class PRN:
         is_dlib(bool, optional): If true, dlib is used for detecting faces.
         prefix(str, optional): If run at another folder, the absolute path is needed to load the data.
     '''
-    def __init__(self, is_dlib = False, prefix = '.'):
+    def __init__(self,  is_mtcnn = True, prefix = '.'):
 
         # resolution of input and output image size.
         self.resolution_inp = 256
         self.resolution_op = 256
 
         #---- load detectors
-        if is_dlib:
-            import dlib
-            detector_path = os.path.join(prefix, 'Data/net-data/mmod_human_face_detector.dat')
-            self.face_detector = dlib.cnn_face_detection_model_v1(
-                    detector_path)
-
+        if is_mtcnn:
+            self.face_detector = MTCNN()
         #---- load PRN 
         self.pos_predictor = PosPrediction(self.resolution_inp, self.resolution_op)
         prn_path = os.path.join(prefix, 'Data/net-data/256_256_resfcn256_weight')
-        if not os.path.isfile(prn_path + '.data-00000-of-00001'):
+        if not os.path.isdir(prn_path):
             print("please download PRN trained model first.")
             exit()
         self.pos_predictor.restore(prn_path)
@@ -49,8 +46,8 @@ class PRN:
         uv_coords = np.hstack((uv_coords[:,:2], np.zeros([uv_coords.shape[0], 1])))
         return uv_coords
 
-    def dlib_detect(self, image):
-        return self.face_detector(image, 1)
+    def face_detect(self, image):
+        return self.face_detector.detect_faces(image)
 
     def net_forward(self, image):
         ''' The core of out method: regress the position map of a given image.
@@ -96,16 +93,15 @@ class PRN:
             center = np.array([right - (right - left) / 2.0, bottom - (bottom - top) / 2.0])
             size = int(old_size*1.6)
         else:
-            detected_faces = self.dlib_detect(image)
+            detected_faces = self.face_detect(image)
             if len(detected_faces) == 0:
                 print('warning: no detected face')
                 return None
 
-            d = detected_faces[0].rect ## only use the first detected face (assume that each input image only contains one face)
-            left = d.left(); right = d.right(); top = d.top(); bottom = d.bottom()
-            old_size = (right - left + bottom - top)/2
-            center = np.array([right - (right - left) / 2.0, bottom - (bottom - top) / 2.0 + old_size*0.14])
-            size = int(old_size*1.58)
+            d = detected_faces[0] ## only use the first detected face (assume that each input image only contains one face)
+            old_size = (d['box'][2] + d['box'][3]) / 2
+            center = np.array([d['box'][0] + d['box'][2] / 2.0, d['box'][1] + d['box'][3] / 2.0])
+            size = int(old_size * 1.58)
 
         # crop image
         src_pts = np.array([[center[0]-size/2, center[1]-size/2], [center[0] - size/2, center[1]+size/2], [center[0]+size/2, center[1]-size/2]])
@@ -116,9 +112,7 @@ class PRN:
         cropped_image = warp(image, tform.inverse, output_shape=(self.resolution_inp, self.resolution_inp))
 
         # run our net
-        #st = time()
         cropped_pos = self.net_forward(cropped_image)
-        #print 'net time:', time() - st
 
         # restore 
         cropped_vertices = np.reshape(cropped_pos, [-1, 3]).T
@@ -180,11 +174,3 @@ class PRN:
         colors = image[ind[:,1], ind[:,0], :] # n x 3
 
         return colors
-
-
-
-
-
-
-
-
