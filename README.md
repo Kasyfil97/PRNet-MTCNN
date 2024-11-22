@@ -7,7 +7,7 @@ This is modification based on (https://github.com/YadiraF/PRNet). Because of the
 - numpy
 - opencv2
 - MTCNN
-- You could download the model in [Google Drive](https://drive.google.com/file/d/1UoE-XuW1SDLUjZmJPkIZ1MLxvQFgmTFH/view) for original code (TF 1.14). Buat for TF 2.x, the model is in `Data` folder.
+- You could download the model in [Google Drive](https://drive.google.com/file/d/1UoE-XuW1SDLUjZmJPkIZ1MLxvQFgmTFH/view) for original code (TF 1.14). But for TF 2.x, the model is in `Data` folder.
 
 GPU is highly recommended. The run time is ~0.01s with GPU(GeForce GTX 1080) and ~0.2s with CPU(Intel(R) Xeon(R) CPU E5-2640 v4 @ 2.40GHz).
 
