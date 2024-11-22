@@ -1,5 +1,5 @@
 # Introduction
-This is modification based on (https://github.com/YadiraF/PRNet). Because of the implementation of the original code using python 2.x and TF 1.x, it hard using the code in python env 3.10.x and TF 2.x. So in this repo will help implementation original code in the current environment
+This is modification based on (https://github.com/YadiraF/PRNet). Because of the implementation of the original code using python 2.x and TF 1.x, it hard using the code in python env 3.10.x and TF 2.x. So this repo will help implementation original code in the current environment
 
 # Requirements
 - Python 3.10.x
