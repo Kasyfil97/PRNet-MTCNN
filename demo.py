@@ -8,12 +8,12 @@ from time import time
 import argparse
 import ast
 
-from api import PRN
+from prnet.prnet import PRN
 
-from utils.estimate_pose import estimate_pose
-from utils.rotate_vertices import frontalize
-from utils.render_app import get_visibility, get_uv_mask, get_depth_image
-from utils.write import write_obj_with_colors, write_obj_with_texture
+from prnet.utils.estimate_pose import estimate_pose
+from prnet.utils.rotate_vertices import frontalize
+from prnet.utils.render_app import get_visibility, get_uv_mask, get_depth_image
+from prnet.utils.write import write_obj_with_colors, write_obj_with_texture
 
 def main(args):
     if args.isShow or args.isTexture:

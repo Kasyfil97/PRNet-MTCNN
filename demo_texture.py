@@ -10,7 +10,7 @@ import ast
 import matplotlib.pyplot as plt
 import argparse
 
-from api import PRN
+from prnet.prnet import PRN
 from utils.render import render_texture
 import cv2
 
