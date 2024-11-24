@@ -19,11 +19,11 @@ setup(
     python_requires=">=3.10",
     install_requires=[
         # Daftar dependensi package Anda
-        "numpy==2.0.2",
-        "tensorflow==2.18.0",
-        "mtcnn==1.0.0",
-        "scipy==1.14.1",
-        "scikit-image==0.24.0"
+        "numpy>=2.0.2",
+        "tensorflow>=2.18.0",
+        "scikit-image>=0.24.0",
+        "scipy>=1.14.1",
+        "mtcnn>=1.0.0"
     ],
     include_package_data=True,
     package_data={
