@@ -1,3 +1,22 @@
+Metadata-Version: 2.1
+Name: prnet
+Version: 0.0.1
+Summary: a package from prnet that can be used to get 3D face reconstruction from a single image
+Home-page: https://github.com/Kasyfil97/prnet
+Author: kasyfil
+Author-email: kasyfil.albar97@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=2.0.2
+Requires-Dist: tensorflow>=2.18.0
+Requires-Dist: scikit-image>=0.24.0
+Requires-Dist: scipy>=1.14.1
+Requires-Dist: mtcnn>=1.0.0
+
 # Introduction
 This is modification based on (https://github.com/YadiraF/PRNet). Because of the implementation of the original code using python 2.x and TF 1.x, it hard using the code in python env 3.10.x and TF 2.x. So this repo will help implementation original code in the current environment
 
@@ -14,7 +33,7 @@ GPU is highly recommended. The run time is ~0.01s with GPU(GeForce GTX 1080) and
 # Installation
 
 ```bash
-pip install git+https://github.com/username/prnet.git
+pip install prnet
 ```
 
 # Usage
