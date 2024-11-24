@@ -1,5 +1,5 @@
-numpy
-scikit-image
-scipy
-tensorflow
-mtcnn
+numpy==2.0.2
+tensorflow==2.18.0
+mtcnn==1.0.0
+scipy==1.14.1
+scikit-image==0.24.0
