@@ -11,7 +11,21 @@ This is modification based on (https://github.com/YadiraF/PRNet). Because of the
 
 GPU is highly recommended. The run time is ~0.01s with GPU(GeForce GTX 1080) and ~0.2s with CPU(Intel(R) Xeon(R) CPU E5-2640 v4 @ 2.40GHz).
 
-# How to use
+# Installation
+
+```bash
+pip install prnet
+```
+
+# Usage
+
+```python
+from prnet import PRNet
+
+model = PRNet()
+```
+
+# Example Notebook
 There is notebook to show in very simple way to implement the code to generate depht map, 3d map image, landmark, etc. 
 ```
 how to use.ipynb

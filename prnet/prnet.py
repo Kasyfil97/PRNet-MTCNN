@@ -7,7 +7,7 @@ from mtcnn.mtcnn import MTCNN
 
 from prnet.network.model import PRNet
 
-class PRN:
+class PRNet:
     ''' Joint 3D Face Reconstruction and Dense Alignment with Position Map Regression Network
     Args:
         is_dlib(bool, optional): If true, dlib is used for detecting faces.
@@ -27,15 +27,15 @@ class PRN:
             prefix = os.path.dirname(os.path.abspath(__file__))
             
         self.pos_predictor = PRNet(self.resolution_inp, self.resolution_op)
-        prn_path = os.path.join(prefix, 'Data', 'net-data', '256_256_resfcn256_weight')
+        prn_path = os.path.join(prefix, 'Weights', 'net-data', '256_256_resfcn256_weight')
         if not os.path.exists(prn_path):
             raise FileNotFoundError("please download PRN trained model first.")
         self.pos_predictor.restore(prn_path)
 
         # uv file
-        self.uv_kpt_ind = np.loadtxt(prefix + '/Data/uv-data/uv_kpt_ind.txt').astype(np.int32) # 2 x 68 get kpt
-        self.face_ind = np.loadtxt(prefix + '/Data/uv-data/face_ind.txt').astype(np.int32) # get valid vertices in the pos map
-        self.triangles = np.loadtxt(prefix + '/Data/uv-data/triangles.txt').astype(np.int32) # ntri x 3
+        self.uv_kpt_ind = np.loadtxt(prefix + '/Weights/uv-data/uv_kpt_ind.txt').astype(np.int32) # 2 x 68 get kpt
+        self.face_ind = np.loadtxt(prefix + '/Weights/uv-data/face_ind.txt').astype(np.int32) # get valid vertices in the pos map
+        self.triangles = np.loadtxt(prefix + '/Weights/uv-data/triangles.txt').astype(np.int32) # ntri x 3
         
         self.uv_coords = self.generate_uv_coords()        
 
