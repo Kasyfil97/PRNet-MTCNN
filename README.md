@@ -14,7 +14,7 @@ GPU is highly recommended. The run time is ~0.01s with GPU(GeForce GTX 1080) and
 # Installation
 
 ```bash
-pip install git+https://github.com/username/prnet.git
+pip install git+https://github.com/Kasyfil97/prnet.git
 ```
 
 # Usage
