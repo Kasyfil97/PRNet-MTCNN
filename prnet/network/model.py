@@ -1,6 +1,7 @@
+import os
 import tensorflow as tf
 import numpy as np
-
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 
 class PRNet:
     def __init__(self, resolution_inp=256, resolution_op=256):
