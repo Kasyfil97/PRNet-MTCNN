@@ -7,7 +7,7 @@ from mtcnn.mtcnn import MTCNN
 
 from prnet.network.model import PRNet
 
-class PRNet:
+class PRN:
     ''' Joint 3D Face Reconstruction and Dense Alignment with Position Map Regression Network
     Args:
         is_dlib(bool, optional): If true, dlib is used for detecting faces.
