@@ -2,6 +2,7 @@ LICENSE
 README.md
 setup.py
 prnet/__init__.py
+prnet/api.py
 prnet/prnet.py
 prnet.egg-info/PKG-INFO
 prnet.egg-info/SOURCES.txt
